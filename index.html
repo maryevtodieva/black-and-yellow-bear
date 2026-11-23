@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Маша &amp; Неопознанный Медведь — Senior Fullstack Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0A0A0A;
+      --bg-secondary: #121212;
+      --bg-elevated: #1A1A1A;
+      --accent: #FFD600;
+      --accent-dim: rgba(255, 214, 0, 0.12);
+      --text-primary: #F5F5F5;
+      --text-secondary: #9E9E9E;
+      --border-color: #262626;
+      --border-strong: #3D3D3D;
+      --font-display: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* Structural Architectural Grid */
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      background-color: rgba(10, 10, 10, 0.92);
+    }
+
+    /* Top Bar / Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: stretch;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 28px;
+      border-right: 1px solid var(--border-color);
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-mark {
+      width: 14px;
+      height: 14px;
+      background-color: var(--accent);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      align-items: stretch;
+    }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-left: 1px solid var(--border-color);
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background-color: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-main {
+      padding: 64px 40px;
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 12px;
+      border: 1px solid var(--accent);
+      background-color: var(--accent-dim);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--accent);
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.8vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-top: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-lead {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 62ch;
+      line-height: 1.6;
+    }
+
+    .hero-sidebar {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+    }
+
+    .stat-cell {
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: background-color 0.2s ease;
+    }
+
+    .stat-cell:last-child {
+      border-bottom: none;
+    }
+
+    .stat-cell:hover {
+      background-color: var(--bg-secondary);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .stat-value.accent {
+      color: var(--accent);
+    }
+
+    /* Section Header */
+    .section-header {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--bg-secondary);
+    }
+
+    .section-index {
+      padding: 22px 28px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--bg-primary);
+      background-color: var(--accent);
+      text-align: center;
+      letter-spacing: 0.06em;
+    }
+
+    .section-title {
+      padding: 22px 32px;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .section-meta {
+      padding: 22px 32px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      border-left: 1px solid var(--border-color);
+    }
+
+    /* Section 01: Обо мне */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .persona-card {
+      padding: 40px;
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .persona-card:last-child {
+      border-right: none;
+    }
+
+    .persona-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .persona-role {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .persona-name {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .persona-id {
+      padding: 4px 10px;
+      border: 1px solid var(--border-strong);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .persona-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .spec-list {
+      list-style: none;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .spec-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .spec-list li span:first-child {
+      color: var(--text-secondary);
+    }
+
+    .spec-list li span:last-child {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Section 02: Мои увлечения */
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hobby-card {
+      padding: 36px 28px;
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      transition: background-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .hobby-card:last-child {
+      border-right: none;
+    }
+
+    .hobby-card:hover {
+      background-color: var(--bg-elevated);
+    }
+
+    .hobby-card.active {
+      background-color: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    .hobby-card.active .hobby-num,
+    .hobby-card.active .hobby-text,
+    .hobby-card.active .hobby-tag {
+      color: var(--bg-primary);
+      border-color: var(--bg-primary);
+    }
+
+    .hobby-num {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+    }
+
+    .hobby-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 10px 0;
+      line-height: 1.2;
+    }
+
+    .hobby-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .hobby-tag {
+      display: inline-block;
+      width: fit-content;
+      padding: 4px 10px;
+      border: 1px solid var(--border-strong);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+    }
+
+    /* Section 03: Мои цели */
+    .goals-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .goals-summary {
+      padding: 40px;
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      background-color: var(--bg-secondary);
+    }
+
+    .goals-summary h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .goals-summary p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .progress-box {
+      border: 1px solid var(--border-strong);
+      padding: 20px;
+      background-color: var(--bg-primary);
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    .progress-bar-track {
+      width: 100%;
+      height: 10px;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--accent);
+      width: 50%;
+      transition: width 0.3s ease;
+    }
+
+    .goals-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .goal-item {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      transition: background-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .goal-item:last-child {
+      border-bottom: none;
+    }
+
+    .goal-item:hover {
+      background-color: var(--bg-secondary);
+    }
+
+    .goal-check {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .checkbox-box {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .goal-item.completed .checkbox-box {
+      background-color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .goal-item.completed .checkbox-box::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background-color: var(--bg-primary);
+    }
+
+    .goal-content {
+      padding: 24px 28px;
+    }
+
+    .goal-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .goal-item.completed .goal-title {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+    }
+
+    .goal-sub {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .goal-deadline {
+      padding: 0 28px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* Section 04: Мои любимые игры */
+    .games-controls {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--bg-primary);
+    }
+
+    .filter-btn {
+      padding: 16px 28px;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+    }
+
+    .filter-btn.active {
+      background-color: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .game-card {
+      padding: 36px 32px;
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      transition: background-color 0.2s ease;
+    }
+
+    .game-card:nth-child(3n) {
+      border-right: none;
+    }
+
+    .game-card:hover {
+      background-color: var(--bg-secondary);
+    }
+
+    .game-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .game-genre {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .game-rating {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 3px 8px;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+    }
+
+    .game-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: 12px 0 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .game-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .game-footer {
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .game-footer strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 28px 32px;
+      background-color: var(--bg-secondary);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .ping-btn {
+      padding: 10px 20px;
+      background-color: var(--accent);
+      color: var(--bg-primary);
+      border: none;
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .ping-btn:hover {
+      opacity: 0.88;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .hero-main {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .hero-sidebar {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+      }
+      .stat-cell {
+        border-bottom: none;
+        border-right: 1px solid var(--border-color);
+      }
+      .stat-cell:last-child {
+        border-right: none;
+      }
+      .hobbies-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hobby-card:nth-child(2n) {
+        border-right: none;
+      }
+      .hobby-card:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border-color);
+      }
+      .goals-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .goals-summary {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .game-card:nth-child(3n) {
+        border-right: 1px solid var(--border-color);
+      }
+      .game-card:nth-child(2n) {
+        border-right: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        grid-template-columns: 1fr;
+      }
+      .brand {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      nav {
+        overflow-x: auto;
+      }
+      nav a {
+        padding: 14px 16px;
+        font-size: 0.78rem;
+      }
+      .hero-sidebar,
+      .about-grid,
+      .hobbies-grid,
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+      .stat-cell,
+      .persona-card,
+      .hobby-card,
+      .game-card {
+        border-right: none !important;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .section-header {
+        grid-template-columns: 80px 1fr;
+      }
+      .section-meta {
+        display: none;
+      }
+      footer {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Navigation -->
+    <header>
+      <a href="#top" class="brand">
+        <span class="brand-mark"></span>
+        <span class="brand-title">Маша &amp; Неопознанный Медведь</span>
+      </a>
+      <nav>
+        <a href="#about">01. Обо мне</a>
+        <a href="#hobbies">02. Увлечения</a>
+        <a href="#goals">03. Цели</a>
+        <a href="#games">04. Игры</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="top" class="hero">
+      <div class="hero-main">
+        <div>
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>Архитектура систем / 5 класс</span>
+          </div>
+          <h1>
+            Маша и
+            <span>Неопознанный Медведь</span>
+          </h1>
+        </div>
+        <p class="hero-lead">
+          11 лет. Fullstack-инженер с 10-летним стажем продакшена (начали проектировать архитектуру сразу после того, как научились ходить). Строим отказоустойчивые пет-проекты, рефакторим домашние задания и тестируем игровые движки.
+        </p>
+      </div>
+      <div class="hero-sidebar">
+        <div class="stat-cell">
+          <span class="stat-label">Возраст / Опыт в IT</span>
+          <span class="stat-value accent">11 / 10 ЛЕТ</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-label">Основной стек</span>
+          <span class="stat-value">TS / PYTHON / LUA</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-label">Статус деплоя</span>
+          <span class="stat-value">УРОКИ СДЕЛАНЫ</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01. Обо мне -->
+    <section id="about">
+      <div class="section-header">
+        <div class="section-index">01</div>
+        <h2 class="section-title">Обо мне и напарнике</h2>
+        <div class="section-meta">Core Team / Duo Architecture</div>
+      </div>
+      <div class="about-grid">
+        <article class="persona-card">
+          <div>
+            <div class="persona-top">
+              <div>
+                <div class="persona-role">Lead Fullstack Developer</div>
+                <h3 class="persona-name">Маша</h3>
+              </div>
+              <span class="persona-id">NODE_01</span>
+            </div>
+            <p class="persona-desc" style="margin-top: 16px;">
+              Отвечаю за фронтенд-сетки, логику бэкенда, алгоритмы олимпиадных задач по математике и своевременный запуск скриптов. Не люблю лишний визуальный шум — предпочитаю чистый код, строгую геометрию и понятные интерфейсы.
+            </p>
+          </div>
+          <ul class="spec-list">
+            <li><span>Локация</span><span>Школа №42 / Локальный хост</span></li>
+            <li><span>Специализация</span><span>Web-архитектура и геймдев</span></li>
+            <li><span>Суперсила</span><span>Дебаг кода до звонка на урок</span></li>
+          </ul>
+        </article>
+
+        <article class="persona-card">
+          <div>
+            <div class="persona-top">
+              <div>
+                <div class="persona-role">Principal System Architect &amp; QA</div>
+                <h3 class="persona-name">Неопознанный Медведь</h3>
+              </div>
+              <span class="persona-id">NODE_02</span>
+            </div>
+            <p class="persona-desc" style="margin-top: 16px;">
+              Старший партнер по парному программированию и резиновая уточка промышленного масштаба. Проводит стресс-тестирование клавиатуры, следит за соблюдением режима сна и одобряет каждый Pull Request молчаливым взглядом.
+            </p>
+          </div>
+          <ul class="spec-list">
+            <li><span>Происхождение</span><span>Не установлено (Strict Confidential)</span></li>
+            <li><span>Специализация</span><span>Code Review и поиск багов</span></li>
+            <li><span>Аптайм</span><span>24/7 без перезагрузок</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- 02. Мои увлечения -->
+    <section id="hobbies">
+      <div class="section-header">
+        <div class="section-index">02</div>
+        <h2 class="section-title">Мои увлечения</h2>
+        <div class="section-meta">Интерактивный выбор модуля</div>
+      </div>
+      <div class="hobbies-grid" id="hobbiesGrid">
+        <div class="hobby-card active" onclick="selectHobby(this)">
+          <div>
+            <div class="hobby-num">MODULE // 01</div>
+            <h3 class="hobby-title">Веб-разработка и UI-сетки</h3>
+            <p class="hobby-text">
+              Проектирую сайты на чистом HTML, CSS Grid и JavaScript. Люблю швейцарскую типографику и минимализм без лишних украшений.
+            </p>
+          </div>
+          <span class="hobby-tag">Frontend / Grid</span>
+        </div>
+
+        <div class="hobby-card" onclick="selectHobby(this)">
+          <div>
+            <div class="hobby-num">MODULE // 02</div>
+            <h3 class="hobby-title">Робототехника и микроконтроллеры</h3>
+            <p class="hobby-text">
+              Собираю умные датчики на Arduino и ESP32. Неопознанный Медведь лично тестирует автоматическую кормушку и систему охраны комнаты.
+            </p>
+          </div>
+          <span class="hobby-tag">Hardware / C++</span>
+        </div>
+
+        <div class="hobby-card" onclick="selectHobby(this)">
+          <div>
+            <div class="hobby-num">MODULE // 03</div>
+            <h3 class="hobby-title">Спортивное программирование</h3>
+            <p class="hobby-text">
+              Решаю задачи на графы, динамическое программирование и теорию чисел на Python. Оптимизирую время выполнения алгоритмов.
+            </p>
+          </div>
+          <span class="hobby-tag">Algorithms / Python</span>
+        </div>
+
+        <div class="hobby-card" onclick="selectHobby(this)">
+          <div>
+            <div class="hobby-num">MODULE // 04</div>
+            <h3 class="hobby-title">3D-моделирование и физика</h3>
+            <p class="hobby-text">
+              Создаю низкополигональные архитектурные сцены в Blender и настраиваю физику столкновений для собственных игровых прототипов.
+            </p>
+          </div>
+          <span class="hobby-tag">3D / Blender</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. Мои цели -->
+    <section id="goals">
+      <div class="section-header">
+        <div class="section-index">03</div>
+        <h2 class="section-title">Мои цели (Roadmap)</h2>
+        <div class="section-meta">Кликайте для отметки прогресса</div>
+      </div>
+      <div class="goals-wrapper">
+        <div class="goals-summary">
+          <div>
+            <h3>Бэклог на учебный год</h3>
+            <p style="margin-top: 12px;">
+              Каждая цель оформлена как инженерная задача с четкими критериями приемки. Нажмите на любую строку справа, чтобы переключить статус выполнения.
+            </p>
+          </div>
+          <div class="progress-box">
+            <div class="progress-header">
+              <span>Выполнение спринта</span>
+              <span id="progressText">50%</span>
+            </div>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="goals-list" id="goalsList">
+          <div class="goal-item completed" onclick="toggleGoal(this)">
+            <div class="goal-check"><div class="checkbox-box"></div></div>
+            <div class="goal-content">
+              <div class="goal-title">Запустить собственный сайт-портфолио на CSS Grid</div>
+              <div class="goal-sub">Без шаблонов, без мультяшной графики, со строгой модульной сеткой.</div>
+            </div>
+            <div class="goal-deadline">DONE</div>
+          </div>
+
+          <div class="goal-item completed" onclick="toggleGoal(this)">
+            <div class="goal-check"><div class="checkbox-box"></div></div>
+            <div class="goal-content">
+              <div class="goal-title">Написать Telegram-бота для расписания уроков</div>
+              <div class="goal-sub">Интеграция с базами данных и автоматические напоминания о контрольных.</div>
+            </div>
+            <div class="goal-deadline">DONE</div>
+          </div>
+
+          <div class="goal-item" onclick="toggleGoal(this)">
+            <div class="goal-check"><div class="checkbox-box"></div></div>
+            <div class="goal-content">
+              <div class="goal-title">Пройти на региональный этап олимпиады по информатике</div>
+              <div class="goal-sub">Закрыть 200 задач на сортировки, бинарный поиск и графы.</div>
+            </div>
+            <div class="goal-deadline">Q1 2027</div>
+          </div>
+
+          <div class="goal-item" onclick="toggleGoal(this)">
+            <div class="goal-check"><div class="checkbox-box"></div></div>
+            <div class="goal-content">
+              <div class="goal-title">Выпустить мультиплеерную 3D-игру на собственном движке</div>
+              <div class="goal-sub">Сетевой код на WebSockets и выделенный сервер для одноклассников.</div>
+            </div>
+            <div class="goal-deadline">Q2 2027</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. Мои любимые игры -->
+    <section id="games">
+      <div class="section-header">
+        <div class="section-index">04</div>
+        <h2 class="section-title">Мои любимые игры</h2>
+        <div class="section-meta">Анализ механик и геймдизайна</div>
+      </div>
+
+      <div class="games-controls">
+        <button class="filter-btn active" onclick="filterGames('all', this)">Все проекты (6)</button>
+        <button class="filter-btn" onclick="filterGames('sandbox', this)">Песочницы &amp; Логика</button>
+        <button class="filter-btn" onclick="filterGames('strategy', this)">Автоматизация</button>
+        <button class="filter-btn" onclick="filterGames('action', this)">Динамика &amp; Скилл</button>
+      </div>
+
+      <div class="games-grid" id="gamesGrid">
+        <article class="game-card" data-category="sandbox">
+          <div>
+            <div class="game-top">
+              <span class="game-genre">Sandbox / Redstone</span>
+              <span class="game-rating">10 / 10</span>
+            </div>
+            <h3 class="game-title">Minecraft (Java Edition)</h3>
+            <p class="game-desc">
+              Использую исключительно для проектирования сложных логических схем на редстоуне, командных блоков и кастомных датапаков.
+            </p>
+          </div>
+          <div class="game-footer">
+            <span>Роль: <strong>Архитектор систем</strong></span>
+            <span>1200+ ч.</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-category="strategy">
+          <div>
+            <div class="game-top">
+              <span class="game-genre">Automation / Factory</span>
+              <span class="game-rating">9.8 / 10</span>
+            </div>
+            <h3 class="game-title">Factorio</h3>
+            <p class="game-desc">
+              Идеальный симулятор масштабирования инфраструктуры и оптимизации пропускной способности конвейеров. Учит мыслить как DevOps.
+            </p>
+          </div>
+          <div class="game-footer">
+            <span>Роль: <strong>Главный инженер</strong></span>
+            <span>450+ ч.</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-category="sandbox">
+          <div>
+            <div class="game-top">
+              <span class="game-genre">Physics / Puzzle</span>
+              <span class="game-rating">9.9 / 10</span>
+            </div>
+            <h3 class="game-title">Portal 2</h3>
+            <p class="game-desc">
+              Эталонный левел-дизайн, пространственная геометрия и лучший кооперативный режим для прохождения вместе с Неопознанным Медведем.
+            </p>
+          </div>
+          <div class="game-footer">
+            <span>Роль: <strong>Тестировщик</strong></span>
+            <span>Пройдено 4x</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-category="action">
+          <div>
+            <div class="game-top">
+              <span class="game-genre">Precision Platformer</span>
+              <span class="game-rating">9.5 / 10</span>
+            </div>
+            <h3 class="game-title">Celeste</h3>
+            <p class="game-desc">
+              Отточенная физика прыжков, мгновенный респавн без экранов загрузки и проверка скорости реакции на сложных уровнях.
+            </p>
+          </div>
+          <div class="game-footer">
+            <span>Роль: <strong>Спидраннер</strong></span>
+            <span>Все B-Sides</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-category="strategy">
+          <div>
+            <div class="game-top">
+              <span class="game-genre">Space Simulation</span>
+              <span class="game-rating">9.6 / 10</span>
+            </div>
+            <h3 class="game-title">Kerbal Space Program</h3>
+            <p class="game-desc">
+              Расчет орбитальных маневров, дельта-V и аэродинамики ступеней. Наглядная физика без скучных формул из учебника.
+            </p>
+          </div>
+          <div class="game-footer">
+            <span>Роль: <strong>Баллистик</strong></span>
+            <span>Посадка на Дюну</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-category="action">
+          <div>
+            <div class="game-top">
+              <span class="game-genre">Tactical / Rhythm</span>
+              <span class="game-rating">9.4 / 10</span>
+            </div>
+            <h3 class="game-title">Geometry Dash</h3>
+            <p class="game-desc">
+              Собственный редактор уровней с триггерами работает как визуальный язык программирования. Прохожу уровни сложности Demon.
+            </p>
+          </div>
+          <div class="game-footer">
+            <span>Роль: <strong>Создатель уровней</strong></span>
+            <span>42 Demons</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        © 2026 МАША &amp; НЕОПОЗНАННЫЙ МЕДВЕДЬ. ВСЕ СИСТЕМЫ РАБОТАЮТ В ШТАТНОМ РЕЖИМЕ.
+      </div>
+      <div class="footer-right">
+        <span id="pingStatus">Latency: 12ms</span>
+        <button class="ping-btn" onclick="pingBear()">Пингануть Медведя</button>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Интерактивный выбор карточки увлечения
+    function selectHobby(element) {
+      const cards = document.querySelectorAll('.hobby-card');
+      cards.forEach(card => card.classList.remove('active'));
+      element.classList.add('active');
+    }
+
+    // Интерактивный чеклист целей с пересчетом прогресс-бара
+    function toggleGoal(element) {
+      element.classList.toggle('completed');
+      const deadlineEl = element.querySelector('.goal-deadline');
+      if (element.classList.contains('completed')) {
+        deadlineEl.dataset.prev = deadlineEl.textContent;
+        deadlineEl.textContent = 'DONE';
+      } else {
+        deadlineEl.textContent = deadlineEl.dataset.prev && deadlineEl.dataset.prev !== 'DONE'
+          ? deadlineEl.dataset.prev
+          : 'IN PROGRESS';
+      }
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const items = document.querySelectorAll('.goal-item');
+      const completed = document.querySelectorAll('.goal-item.completed');
+      const percent = Math.round((completed.length / items.length) * 100);
+      document.getElementById('progressText').textContent = percent + '%';
+      document.getElementById('progressFill').style.width = percent + '%';
+    }
+
+    // Фильтрация игр по жанрам
+    function filterGames(category, btn) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.game-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Проверка статуса Неопознанного Медведя
+    function pingBear() {
+      const statusEl = document.getElementById('pingStatus');
+      const responses = [
+        'Медведь: 200 OK (Code Review пройден)',
+        'Медведь: 202 Accepted (Изучает логи)',
+        'Медведь: 200 OK (Готов к катке в Portal 2)',
+        'Медведь: 204 No Content (Спит на клавиатуре)'
+      ];
+      const randomMsg = responses[Math.floor(Math.random() * responses.length)];
+      statusEl.style.color = '#FFD600';
+      statusEl.textContent = randomMsg;
+    }
+  </script>
+</body>
+</html>
